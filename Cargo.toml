@@ -1,0 +1,12 @@
+[package]
+name = "chae"
+version = "0.1.0"
+edition = "2021"
+description = "A local GNOME appearance manager"
+license = "GPL-3.0-or-later"
+
+[dependencies]
+gio = "0.20"
+glib = "0.20"
+gtk = { package = "gtk4", version = "0.9" }
+adw = { package = "libadwaita", version = "0.7", features = ["v1_5"] }
