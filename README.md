@@ -18,10 +18,12 @@ You need Rust/Cargo and the GTK4 and libadwaita development packages installed.
 cargo run
 ```
 
+## Installation layout for packagers
+
+Install the `chae` executable in the system binary directory, `data/applications/io.github.dclmao.Chae.desktop` to `${datadir}/applications/`, and the app icon to `${datadir}/icons/hicolor/scalable/apps/io.github.dclmao.Chae.svg`. The desktop entry and GTK application use the same reverse-DNS application ID and icon name. Do not rely on a source-tree path or copy the icon at application runtime.
+
 Shell theme application requires the GNOME Shell User Themes extension. Theme changes may not take effect everywhere until the affected applications or GNOME session are restarted.
 
 ## Local search paths
 
 Shell themes are scanned in `~/.local/share/themes`, `~/.themes/`, `/usr/local/share/themes`, and `/usr/share/themes`. Application icons and cursor themes are both discovered in `~/.icons`, `~/.local/share/icons`, `/usr/local/share/icons`, and `/usr/share/icons`. A theme directory with an `index.theme` file and a `.cursor` marker file appears only under Mouse cursors; unmarked icon themes appear only under Application icons. The app only enumerates local directories; it does not install, modify, or remove theme files.
-=======
-# chae

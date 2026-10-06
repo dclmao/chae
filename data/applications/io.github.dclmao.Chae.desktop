@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Chae
+Comment=Manage GNOME shell themes, icons, and cursors
+Exec=chae
+Icon=io.github.dclmao.Chae
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;GTK;
+StartupNotify=true
+DBusActivatable=true

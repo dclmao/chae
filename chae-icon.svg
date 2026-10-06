@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1024" height="1024"
+     viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="chaeGradient" x1="0" y1="0" x2="0.82" y2="1">
+      <stop offset="0%" stop-color="#F1F2F4"/>
+      <stop offset="42%" stop-color="#C9CBD1"/>
+      <stop offset="100%" stop-color="#7E818A"/>
+    </linearGradient>
+    <radialGradient id="chaeHighlight" cx="42%" cy="32%" r="72%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.30"/>
+      <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.10"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Transparent 1024×1024 canvas. Artwork intentionally padded for small icon sizes. -->
+  <path
+    d="M 512,138
+       C 536,138 544,168 553,205
+       C 568,269 588,334 631,377
+       C 674,420 739,440 803,455
+       C 840,464 870,472 870,512
+       C 870,552 840,560 803,569
+       C 739,584 674,604 631,647
+       C 588,690 568,755 553,819
+       C 544,856 536,886 512,886
+       C 488,886 480,856 471,819
+       C 456,755 436,690 393,647
+       C 350,604 285,584 221,569
+       C 184,560 154,552 154,512
+       C 154,472 184,464 221,455
+       C 285,440 350,420 393,377
+       C 436,334 456,269 471,205
+       C 480,168 488,138 512,138 Z"
+    fill="url(#chaeGradient)"/>
+
+  <path
+    d="M 512,138
+       C 536,138 544,168 553,205
+       C 568,269 588,334 631,377
+       C 674,420 739,440 803,455
+       C 840,464 870,472 870,512
+       C 870,552 840,560 803,569
+       C 739,584 674,604 631,647
+       C 588,690 568,755 553,819
+       C 544,856 536,886 512,886
+       C 488,886 480,856 471,819
+       C 456,755 436,690 393,647
+       C 350,604 285,584 221,569
+       C 184,560 154,552 154,512
+       C 154,472 184,464 221,455
+       C 285,440 350,420 393,377
+       C 436,334 456,269 471,205
+       C 480,168 488,138 512,138 Z"
+    fill="url(#chaeHighlight)"/>
+</svg>
