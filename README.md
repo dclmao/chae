@@ -1,3 +1,5 @@
+![ainotice](img/ainotice.png)
+
 # Chae
 
 A local GNOME appearance manager built with Rust, GTK4, and libadwaita.
