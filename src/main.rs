@@ -58,6 +58,10 @@ fn main() {
         .application_id("io.github.dclmao.Chae")
         .build();
     gtk::Window::set_default_icon_name("io.github.dclmao.Chae");
+    if let Some(display) = gtk::gdk::Display::default() {
+        let icon_theme = gtk::IconTheme::for_display(&display);
+        icon_theme.add_search_path(concat!(env!("CARGO_MANIFEST_DIR"), "/data/icons"));
+    }
 
     app.connect_activate(build_ui);
     app.run();
@@ -248,7 +252,7 @@ fn build_ui(app: &adw::Application) {
         let selected = gallery
             .selected_children()
             .first()
-            .and_then(|child| child.child().map(|card| card.widget_name().to_string()));
+            .map(|child| child.widget_name().to_string());
         *selected_for_cards.borrow_mut() = selected;
         apply_for_cards.set_sensitive(selected_for_cards.borrow().is_some());
     });
@@ -269,12 +273,17 @@ fn build_ui(app: &adw::Application) {
         };
         match apply_theme(category, &name) {
             Ok(()) => {
-                status_for_apply.set_text(&format!("Applied ‘{name}’."));
-                if category != Category::Shell {
+                if category == Category::Shell {
+                    let current = current_theme(Category::Shell).unwrap_or_else(|| "unknown".into());
+                    status_for_apply.set_text(&format!(
+                        "Shell theme setting is now ‘{current}’. Reload GNOME Shell or sign out and back in if the appearance has not updated."
+                    ));
+                } else {
+                    status_for_apply.set_text(&format!("Applied ‘{name}’."));
                     populate_list(category, &list_for_apply, &status_for_apply);
+                    selected_for_apply.borrow_mut().take();
+                    apply_button_for_click.set_sensitive(false);
                 }
-                selected_for_apply.borrow_mut().take();
-                apply_button_for_click.set_sensitive(false);
             }
             Err(error) => status_for_apply.set_text(&error),
         }
@@ -1415,12 +1424,18 @@ fn apply_theme(category: Category, name: &str) -> Result<(), String> {
         .output()
         .map_err(|error| format!("Could not run gsettings: {error}"))?;
 
-    if result.status.success() {
-        Ok(())
-    } else {
-        Err(format!(
+    if !result.status.success() {
+        return Err(format!(
             "Could not apply ‘{name}’: {}",
             String::from_utf8_lossy(&result.stderr).trim()
-        ))
+        ));
     }
+    let applied = current_theme(category);
+    if applied.as_deref() != Some(name) {
+        return Err(format!(
+            "The setting command succeeded, but GNOME reports the current theme as ‘{}’.",
+            applied.as_deref().unwrap_or("unknown")
+        ));
+    }
+    Ok(())
 }
